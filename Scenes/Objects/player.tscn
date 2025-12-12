@@ -1,0 +1,263 @@
+[gd_scene load_steps=22 format=3 uid="uid://dvviq4cljpoaj"]
+
+[ext_resource type="Script" uid="uid://bo562qcch5unu" path="res://Scripts/Objects/player.gd" id="1_kvv6r"]
+[ext_resource type="Texture2D" uid="uid://cbamq0to2j5s2" path="res://Graphics/Sprites/santa25_player.png" id="2_picsy"]
+[ext_resource type="Texture2D" uid="uid://cno0vrrhrmyna" path="res://Graphics/Sprites/Circle.png" id="3_dfgsd"]
+[ext_resource type="Texture2D" uid="uid://bjxqbrikp0dpn" path="res://Graphics/Sprites/santa25_spear.png" id="3_picsy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dfgsd"]
+radius = 3.0
+height = 14.0
+
+[sub_resource type="Animation" id="Animation_picsy"]
+resource_name = "idle"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_dfgsd"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_xbekk"]
+resource_name = "jump"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_5uqce"]
+resource_name = "fall"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [18, 19, 20]
+}
+
+[sub_resource type="Animation" id="Animation_h6i5h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_y42te"]
+resource_name = "up_aim"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+
+[sub_resource type="Animation" id="Animation_2i876"]
+resource_name = "upside_aim"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [25]
+}
+
+[sub_resource type="Animation" id="Animation_jvxap"]
+resource_name = "side_aim"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [26]
+}
+
+[sub_resource type="Animation" id="Animation_0b04c"]
+resource_name = "downside_aim"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [27]
+}
+
+[sub_resource type="Animation" id="Animation_6odyb"]
+resource_name = "down_aim"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [28]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y42te"]
+_data = {
+&"RESET": SubResource("Animation_h6i5h"),
+&"down_aim": SubResource("Animation_6odyb"),
+&"downside_aim": SubResource("Animation_0b04c"),
+&"fall": SubResource("Animation_5uqce"),
+&"idle": SubResource("Animation_picsy"),
+&"jump": SubResource("Animation_xbekk"),
+&"run": SubResource("Animation_dfgsd"),
+&"side_aim": SubResource("Animation_jvxap"),
+&"up_aim": SubResource("Animation_y42te"),
+&"upside_aim": SubResource("Animation_2i876")
+}
+
+[sub_resource type="Gradient" id="Gradient_dfgsd"]
+colors = PackedColorArray(1, 1, 1, 1, 0.047058824, 0.9019608, 0.9490196, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xbekk"]
+gradient = SubResource("Gradient_dfgsd")
+
+[sub_resource type="Curve" id="Curve_5uqce"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_h6i5h"]
+curve = SubResource("Curve_5uqce")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y42te"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(3.635, 5.735, 1)
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_h6i5h")
+color_ramp = SubResource("GradientTexture1D_xbekk")
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_kvv6r")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_picsy")
+offset = Vector2(0, -16)
+hframes = 6
+vframes = 5
+
+[node name="Spear" type="Node2D" parent="."]
+visible = false
+position = Vector2(-4, -8)
+
+[node name="CircleSprite" type="Sprite2D" parent="Spear"]
+texture = ExtResource("3_dfgsd")
+
+[node name="SpearSprite" type="Sprite2D" parent="Spear"]
+texture = ExtResource("3_picsy")
+offset = Vector2(0, 0.5)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_dfgsd")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_y42te")
+}
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="BufferTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="ThrowTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="LaunchParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, -7)
+emitting = false
+amount = 100
+trail_lifetime = 3.1999999999999997
+process_material = SubResource("ParticleProcessMaterial_y42te")
