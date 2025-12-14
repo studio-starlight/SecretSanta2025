@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://4ovcpbrhco1"]
+
+[ext_resource type="Script" uid="uid://01setuoqxcbh" path="res://Scripts/Objects/moving_platform.gd" id="1_1yepl"]
+[ext_resource type="Texture2D" uid="uid://bpkhsgumx2318" path="res://Graphics/Sprites/santa25_platform.png" id="2_tyq8h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8vgy"]
+size = Vector2(28, 5)
+
+[sub_resource type="Animation" id="Animation_erlno"]
+resource_name = "pong"
+length = 5.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_uphas"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5gh8t"]
+resource_name = "loop"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bxmdw"]
+_data = {
+&"RESET": SubResource("Animation_uphas"),
+&"loop": SubResource("Animation_5gh8t"),
+&"pong": SubResource("Animation_erlno")
+}
+
+[node name="MovingPlatform" type="Path2D"]
+script = ExtResource("1_1yepl")
+
+[node name="PathFollow" type="PathFollow2D" parent="."]
+rotates = false
+
+[node name="Platform" type="CharacterBody2D" parent="PathFollow"]
+
+[node name="Sprite" type="Sprite2D" parent="PathFollow/Platform"]
+texture = ExtResource("2_tyq8h")
+
+[node name="Shape" type="CollisionShape2D" parent="PathFollow/Platform"]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_n8vgy")
+one_way_collision = true
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bxmdw")
+}

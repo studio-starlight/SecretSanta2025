@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3ve0ae6gf8up"
-path="res://.godot/imported/santa25chara2.png-d920903994c2ba48ec4ff586ea873f24.ctex"
+uid="uid://b8fd3ctoujeat"
+path="res://.godot/imported/santa25_fallingblock.png-89ef0dbc01ea3f524bdae21227cfd53f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Sprites/santa25chara2.png"
-dest_files=["res://.godot/imported/santa25chara2.png-d920903994c2ba48ec4ff586ea873f24.ctex"]
+source_file="res://Graphics/Sprites/santa25_fallingblock.png"
+dest_files=["res://.godot/imported/santa25_fallingblock.png-89ef0dbc01ea3f524bdae21227cfd53f.ctex"]
 
 [params]
 

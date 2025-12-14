@@ -1,0 +1,201 @@
+[gd_scene load_steps=15 format=3 uid="uid://cou88byndtpro"]
+
+[ext_resource type="Script" uid="uid://danbn8u6cikot" path="res://Scripts/Objects/orb.gd" id="1_0vcn5"]
+[ext_resource type="Texture2D" uid="uid://c481nahf14u4p" path="res://Graphics/Sprites/santa25_orb.png" id="2_55qtl"]
+[ext_resource type="Texture2D" uid="uid://8hjnutyaiaj4" path="res://Graphics/Sprites/santa25_particles.png" id="3_55qtl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_apixa"]
+radius = 5.0
+
+[sub_resource type="Animation" id="Animation_6mr1j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Particles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_apixa"]
+resource_name = "reform"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.5, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_55qtl"]
+resource_name = "shatter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Particles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5bboc"]
+_data = {
+&"RESET": SubResource("Animation_6mr1j"),
+&"reform": SubResource("Animation_apixa"),
+&"shatter": SubResource("Animation_55qtl")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_apixa"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_6mr1j"]
+_data = [Vector2(0.0049019605, 0.70786524), 0.0, 0.0, 0, 0, Vector2(0.69607836, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5bboc"]
+curve = SubResource("Curve_6mr1j")
+
+[sub_resource type="Curve" id="Curve_i6r4c"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2f6cn"]
+curve = SubResource("Curve_i6r4c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ve3a"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 6.47
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 242.41997
+radial_velocity_curve = SubResource("CurveTexture_5bboc")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_2f6cn")
+anim_offset_max = 1.0
+
+[node name="Orb" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_0vcn5")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_55qtl")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_apixa")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5bboc")
+}
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_apixa")
+emitting = false
+texture = ExtResource("3_55qtl")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_4ve3a")

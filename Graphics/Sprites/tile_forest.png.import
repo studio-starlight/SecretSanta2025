@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dys1a5a6ewumq"
-path="res://.godot/imported/santa25spear.png-9fd08dc82a27739be6ff347dd09a3b85.ctex"
+uid="uid://clh58ytu2tiuk"
+path="res://.godot/imported/tile_forest.png-11ec924fbc3c2876589a328de24862dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Sprites/santa25spear.png"
-dest_files=["res://.godot/imported/santa25spear.png-9fd08dc82a27739be6ff347dd09a3b85.ctex"]
+source_file="res://Graphics/Sprites/tile_forest.png"
+dest_files=["res://.godot/imported/tile_forest.png-11ec924fbc3c2876589a328de24862dc.ctex"]
 
 [params]
 

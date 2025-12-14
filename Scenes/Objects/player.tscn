@@ -1,13 +1,83 @@
-[gd_scene load_steps=22 format=3 uid="uid://dvviq4cljpoaj"]
+[gd_scene load_steps=31 format=3 uid="uid://dvviq4cljpoaj"]
 
 [ext_resource type="Script" uid="uid://bo562qcch5unu" path="res://Scripts/Objects/player.gd" id="1_kvv6r"]
 [ext_resource type="Texture2D" uid="uid://cbamq0to2j5s2" path="res://Graphics/Sprites/santa25_player.png" id="2_picsy"]
-[ext_resource type="Texture2D" uid="uid://cno0vrrhrmyna" path="res://Graphics/Sprites/Circle.png" id="3_dfgsd"]
+[ext_resource type="Texture2D" uid="uid://c2huiwcyysvne" path="res://Graphics/Sprites/santa25_cursor.png" id="3_dfgsd"]
 [ext_resource type="Texture2D" uid="uid://bjxqbrikp0dpn" path="res://Graphics/Sprites/santa25_spear.png" id="3_picsy"]
+[ext_resource type="PackedScene" uid="uid://8esgyxbdu8o1" path="res://Scenes/Components/take_damage_box.tscn" id="5_xbekk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbekk"]
+size = Vector2(10, 4)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dfgsd"]
 radius = 3.0
 height = 14.0
+
+[sub_resource type="Animation" id="Animation_h6i5h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6odyb"]
+resource_name = "down_aim"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [28]
+}
+
+[sub_resource type="Animation" id="Animation_0b04c"]
+resource_name = "downside_aim"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [27]
+}
+
+[sub_resource type="Animation" id="Animation_5uqce"]
+resource_name = "fall"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [18, 19, 20]
+}
 
 [sub_resource type="Animation" id="Animation_picsy"]
 resource_name = "idle"
@@ -24,6 +94,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_xbekk"]
+resource_name = "jump"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [12, 13, 14]
 }
 
 [sub_resource type="Animation" id="Animation_dfgsd"]
@@ -44,42 +131,10 @@ tracks/0/keys = {
 "values": [6, 7, 8, 9, 10, 11]
 }
 
-[sub_resource type="Animation" id="Animation_xbekk"]
-resource_name = "jump"
-length = 0.3
+[sub_resource type="Animation" id="Animation_jvxap"]
+resource_name = "side_aim"
+length = 0.1
 step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [12, 13, 14]
-}
-
-[sub_resource type="Animation" id="Animation_5uqce"]
-resource_name = "fall"
-length = 0.3
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [18, 19, 20]
-}
-
-[sub_resource type="Animation" id="Animation_h6i5h"]
-length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -90,7 +145,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [26]
 }
 
 [sub_resource type="Animation" id="Animation_y42te"]
@@ -127,9 +182,9 @@ tracks/0/keys = {
 "values": [25]
 }
 
-[sub_resource type="Animation" id="Animation_jvxap"]
-resource_name = "side_aim"
-length = 0.1
+[sub_resource type="Animation" id="Animation_1mxid"]
+resource_name = "spin"
+length = 0.5
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -138,14 +193,14 @@ tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [26]
+"values": [36, 37, 38, 39, 40]
 }
 
-[sub_resource type="Animation" id="Animation_0b04c"]
-resource_name = "downside_aim"
+[sub_resource type="Animation" id="Animation_h2jbs"]
+resource_name = "spear_up"
 length = 0.1
 step = 0.1
 tracks/0/type = "value"
@@ -158,11 +213,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [27]
+"values": [30]
 }
 
-[sub_resource type="Animation" id="Animation_6odyb"]
-resource_name = "down_aim"
+[sub_resource type="Animation" id="Animation_ea56u"]
+resource_name = "spear_upside"
 length = 0.1
 step = 0.1
 tracks/0/type = "value"
@@ -175,7 +230,58 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [28]
+"values": [31]
+}
+
+[sub_resource type="Animation" id="Animation_8ietw"]
+resource_name = "spear_side"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [32]
+}
+
+[sub_resource type="Animation" id="Animation_5rt57"]
+resource_name = "spear_downside"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [33]
+}
+
+[sub_resource type="Animation" id="Animation_u2cyj"]
+resource_name = "spear_down"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [34]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y42te"]
@@ -188,6 +294,12 @@ _data = {
 &"jump": SubResource("Animation_xbekk"),
 &"run": SubResource("Animation_dfgsd"),
 &"side_aim": SubResource("Animation_jvxap"),
+&"spear_down": SubResource("Animation_u2cyj"),
+&"spear_downside": SubResource("Animation_5rt57"),
+&"spear_side": SubResource("Animation_8ietw"),
+&"spear_up": SubResource("Animation_h2jbs"),
+&"spear_upside": SubResource("Animation_ea56u"),
+&"spin": SubResource("Animation_1mxid"),
 &"up_aim": SubResource("Animation_y42te"),
 &"upside_aim": SubResource("Animation_2i876")
 }
@@ -213,19 +325,22 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_h6i5h")
 color_ramp = SubResource("GradientTexture1D_xbekk")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5uqce"]
+size = Vector2(8, 15)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_kvv6r")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_picsy")
-offset = Vector2(0, -16)
+offset = Vector2(0, -24)
 hframes = 6
-vframes = 5
+vframes = 7
 
 [node name="Spear" type="Node2D" parent="."]
 visible = false
-position = Vector2(-4, -8)
+position = Vector2(0, -8)
 
 [node name="CircleSprite" type="Sprite2D" parent="Spear"]
 texture = ExtResource("3_dfgsd")
@@ -233,6 +348,14 @@ texture = ExtResource("3_dfgsd")
 [node name="SpearSprite" type="Sprite2D" parent="Spear"]
 texture = ExtResource("3_picsy")
 offset = Vector2(0, 0.5)
+
+[node name="SpearArea" type="Area2D" parent="Spear/SpearSprite"]
+position = Vector2(0, -11)
+collision_layer = 0
+collision_mask = 64
+
+[node name="Shape" type="CollisionShape2D" parent="Spear/SpearSprite/SpearArea"]
+shape = SubResource("RectangleShape2D_xbekk")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
@@ -244,11 +367,11 @@ libraries = {
 }
 
 [node name="CoyoteTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.1
 one_shot = true
 
 [node name="BufferTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.1
 one_shot = true
 
 [node name="ThrowTimer" type="Timer" parent="."]
@@ -261,3 +384,9 @@ emitting = false
 amount = 100
 trail_lifetime = 3.1999999999999997
 process_material = SubResource("ParticleProcessMaterial_y42te")
+
+[node name="TakeDamageBox" parent="." instance=ExtResource("5_xbekk")]
+
+[node name="Shape" type="CollisionShape2D" parent="TakeDamageBox"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_5uqce")

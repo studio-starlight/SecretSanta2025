@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://dmlmekjenx6ik"]
+
+[ext_resource type="Script" uid="uid://01setuoqxcbh" path="res://Scripts/Objects/moving_platform.gd" id="1_0wur1"]
+[ext_resource type="Texture2D" uid="uid://dgiev00tel4i6" path="res://Graphics/Sprites/santa25_spikeball.png" id="2_io4gw"]
+[ext_resource type="PackedScene" uid="uid://dmfuo1fky6bhy" path="res://Scenes/Components/deal_damage_box.tscn" id="3_ypk66"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vhguo"]
+radius = 6.0827627
+
+[sub_resource type="Animation" id="Animation_uphas"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5gh8t"]
+resource_name = "loop"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_erlno"]
+resource_name = "pong"
+length = 5.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bxmdw"]
+_data = {
+&"RESET": SubResource("Animation_uphas"),
+&"loop": SubResource("Animation_5gh8t"),
+&"pong": SubResource("Animation_erlno")
+}
+
+[node name="SpikeBall" type="Path2D"]
+script = ExtResource("1_0wur1")
+
+[node name="PathFollow" type="PathFollow2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="PathFollow"]
+texture = ExtResource("2_io4gw")
+
+[node name="DealDamageBox" parent="PathFollow" instance=ExtResource("3_ypk66")]
+
+[node name="Shape" type="CollisionShape2D" parent="PathFollow/DealDamageBox"]
+shape = SubResource("CircleShape2D_vhguo")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bxmdw")
+}

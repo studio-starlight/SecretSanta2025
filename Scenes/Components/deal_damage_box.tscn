@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dmfuo1fky6bhy"]
+
+[node name="DealDamageBox" type="Area2D"]
+collision_layer = 64
+collision_mask = 0
+monitoring = false
