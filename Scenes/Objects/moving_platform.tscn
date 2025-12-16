@@ -6,23 +6,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n8vgy"]
 size = Vector2(28, 5)
 
-[sub_resource type="Animation" id="Animation_erlno"]
-resource_name = "pong"
-length = 5.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PathFollow:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
 [sub_resource type="Animation" id="Animation_uphas"]
 length = 0.001
 tracks/0/type = "value"
@@ -55,6 +38,23 @@ tracks/0/keys = {
 "values": [0.0, 1.0]
 }
 
+[sub_resource type="Animation" id="Animation_erlno"]
+resource_name = "pong"
+length = 5.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bxmdw"]
 _data = {
 &"RESET": SubResource("Animation_uphas"),
@@ -65,18 +65,21 @@ _data = {
 [node name="MovingPlatform" type="Path2D"]
 script = ExtResource("1_1yepl")
 
-[node name="PathFollow" type="PathFollow2D" parent="."]
-rotates = false
+[node name="Platform" type="AnimatableBody2D" parent="."]
 
-[node name="Platform" type="CharacterBody2D" parent="PathFollow"]
-
-[node name="Sprite" type="Sprite2D" parent="PathFollow/Platform"]
+[node name="Sprite" type="Sprite2D" parent="Platform"]
 texture = ExtResource("2_tyq8h")
 
-[node name="Shape" type="CollisionShape2D" parent="PathFollow/Platform"]
+[node name="Shape" type="CollisionShape2D" parent="Platform"]
 position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_n8vgy")
 one_way_collision = true
+
+[node name="PathFollow" type="PathFollow2D" parent="."]
+rotates = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow"]
+remote_path = NodePath("../../Platform")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 libraries = {

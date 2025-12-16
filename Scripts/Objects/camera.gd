@@ -6,10 +6,13 @@ class_name ModifiedCamera extends Camera2D
 
 var rng = RandomNumberGenerator.new()
 var shake_strength: float = 0.0
+var room_zones : Array = []
+var active_zone : Area2D
 
 @onready var screen_size: Vector2 = get_viewport_rect().size
 
 func _ready() -> void:
+	add_to_group("camera")
 	SignalManager.connect("camera_shake", _apply_shake)
 	set_screen_position()
 	await get_tree().process_frame
@@ -20,6 +23,9 @@ func _process(delta: float) -> void:
 	if shake_strength > 0:
 		shake_strength = lerpf(shake_strength, 0, shakeFade * delta)
 		offset = randomOffset()
+	if !room_zones.is_empty():
+		active_zone = room_zones.front()
+		global_position = active_zone.global_position
 func _apply_shake():
 	shake_strength = randomStrength
 func set_screen_position() -> void:

@@ -75,6 +75,8 @@ func _physics_process(delta: float) -> void:
 						set_state(PlayerState.idle)
 		if state not in [PlayerState.throw, PlayerState.pulling]:
 			set_collision_mask_value(8, true)
+			spear.visible = false
+			Engine.time_scale = 1.0
 			direction = Input.get_axis("left", "right")
 			if direction != 0.0:
 				acceleration()
