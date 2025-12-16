@@ -1,4 +1,4 @@
-extends Camera2D
+class_name ModifiedCamera extends Camera2D
 
 @export var player : Player
 @export var randomStrength: float = 8.0
@@ -20,7 +20,6 @@ func _process(delta: float) -> void:
 	if shake_strength > 0:
 		shake_strength = lerpf(shake_strength, 0, shakeFade * delta)
 		offset = randomOffset()
-	set_screen_position()
 func _apply_shake():
 	shake_strength = randomStrength
 func set_screen_position() -> void:

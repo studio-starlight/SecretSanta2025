@@ -49,6 +49,10 @@ folder_colors={
 "res://Scripts/": "green"
 }
 
+[global_group]
+
+camera=""
+
 [input]
 
 left={
@@ -86,6 +90,7 @@ escape={
 2d_physics/layer_5="Objects"
 2d_physics/layer_6="DangerTakeDamage"
 2d_physics/layer_7="DangerDealDamage"
+2d_physics/layer_8="PassThrough"
 2d_physics/layer_9="Interaction"
 
 [rendering]

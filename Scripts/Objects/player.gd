@@ -18,6 +18,7 @@ const JUMP_FORCE : float = 200.0
 const MAX_PULL_DISTANCE : float = 60.0
 const MAX_FALL_SPEED : float = 350.0
 const MAX_SPEED : float = 140.0
+const REFLECT_MULTIPLYER : float = 1
 #================ VARIABLES ==========================
 var buffer_jump : bool
 var coyote_jump : bool
@@ -66,12 +67,14 @@ func _physics_process(delta: float) -> void:
 					_gravity()
 					launch_particles.emitting = false
 					if is_on_floor() or is_on_wall():
+						set_collision_mask_value(8, true)
 						velocity = Vector2.ZERO
 						circle_sprite.visible = true
 						spear.visible = false
 						SignalManager.emit_signal("camera_shake")
 						set_state(PlayerState.idle)
 		if state not in [PlayerState.throw, PlayerState.pulling]:
+			set_collision_mask_value(8, true)
 			direction = Input.get_axis("left", "right")
 			if direction != 0.0:
 				acceleration()
@@ -91,6 +94,11 @@ func _physics_process(delta: float) -> void:
 				spear.visible = true
 				Engine.time_scale = 0.3
 				set_state(PlayerState.pulling)
+		else:
+			if state == PlayerState.pulling:
+				set_collision_mask_value(8, true)
+			else:
+				set_collision_mask_value(8, false)
 		var was_on_ground = is_on_floor()
 		move_and_slide()
 		var just_left_ground = !is_on_floor() && was_on_ground
@@ -177,6 +185,12 @@ func air_spin() -> void:
 	circle_sprite.visible = true
 	jump()
 	animator.play("spin")
+func reflect(other : Vector2) -> void:
+	var vector_to_other = other - global_position
+	var velocity_angle = global_position.angle_to(vector_to_other)
+	var velocity_magnitude = velocity.length()
+	var new_velocity = Vector2(cos(velocity_angle), sin(velocity_angle))
+	velocity = new_velocity * velocity_magnitude * REFLECT_MULTIPLYER
 func die() -> void:
 	state = PlayerState.disable
 	spear.visible = false
