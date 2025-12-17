@@ -44,6 +44,7 @@ func _ready() -> void:
 	coyote_timer.connect("timeout", _on_coyote_timeout)
 	throw_timer.connect("timeout", _on_throw_timeout)
 	take_damage_box.connect("area_entered", _take_damage)
+	take_damage_box.connect("body_entered", _take_damage_body)
 	spear_area.connect("area_entered", _on_spear_entered)
 func _process(delta: float) -> void:
 	if state != PlayerState.disable:
@@ -118,10 +119,15 @@ func _on_throw_timeout() -> void:
 func _take_damage(area : Area2D) -> void:
 	if area.owner is not Player:
 		call_deferred("die")
+func _take_damage_body(body : Node2D) -> void:
+	print("Damage")
+	if body is not Player:
+		call_deferred("die")
 func _on_spear_entered(area : Area2D) -> void:
 	if state == PlayerState.throw:
-		SignalManager.emit_signal("camera_shake")
-		air_spin()
+		pass
+		#SignalManager.emit_signal("camera_shake")
+		#air_spin()
 #================== STATE FUNCTIONS ===========================
 func set_state(new_state: PlayerState) -> void:
 	var previous_state := state

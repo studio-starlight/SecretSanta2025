@@ -343,6 +343,7 @@ visible = false
 position = Vector2(0, -8)
 
 [node name="CircleSprite" type="Sprite2D" parent="Spear"]
+z_index = 10
 texture = ExtResource("3_dfgsd")
 
 [node name="SpearSprite" type="Sprite2D" parent="Spear"]

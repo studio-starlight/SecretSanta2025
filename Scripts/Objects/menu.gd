@@ -19,7 +19,7 @@ func press_play() -> void:
 	quit.disabled = true
 	TransitionManager.play_transition("fade_exit")
 	await TransitionManager.transition_finished
-	get_tree().change_scene_to_file("res://Scenes/Levels/opening.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/map.tscn")
 func press_controls() -> void:
 	main_menu.visible = false
 	controls_menu.visible = true
