@@ -67,6 +67,7 @@ _data = {
 script = ExtResource("1_0wur1")
 
 [node name="PathFollow" type="PathFollow2D" parent="."]
+rotates = false
 
 [node name="Sprite" type="Sprite2D" parent="PathFollow"]
 texture = ExtResource("2_io4gw")

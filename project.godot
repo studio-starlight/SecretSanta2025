@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 TransitionManager="*res://Scenes/Autoloads/transition_manager.tscn"
 SignalManager="*res://Scripts/Autoloads/signal_manager.gd"
+AudioManager="*res://Scenes/Autoloads/audio_manager.tscn"
+FullscreenManager="*res://Scripts/Autoloads/fullscreen_manager.gd"
 
 [debug]
 

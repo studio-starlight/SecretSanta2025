@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://chh3c66micuw1"]
+
+[ext_resource type="Script" uid="uid://c7b5ajx7feaaa" path="res://Scripts/Autoloads/audio_manager.gd" id="1_rhxyh"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_rhxyh")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sounds"]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Sounds"]
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Sounds"]
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="Sounds"]
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="Sounds"]
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="Sounds"]
+
+[node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="Sounds"]
+
+[node name="AudioStreamPlayer8" type="AudioStreamPlayer" parent="Sounds"]
+
+[node name="Music" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Music"]
+
+[node name="Animator" type="AnimationPlayer" parent="Music"]

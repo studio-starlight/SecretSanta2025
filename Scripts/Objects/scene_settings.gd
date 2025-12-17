@@ -8,10 +8,3 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
 		get_tree().quit()
-	if event.is_action_pressed("fullscreen"):
-		print("fullscreen")
-		if get_window().mode != Window.MODE_FULLSCREEN:
-			get_window().mode = Window.MODE_FULLSCREEN
-		else:
-			get_window().mode = Window.MODE_WINDOWED
-		

@@ -239,6 +239,18 @@ position = Vector2(2328, -280)
 curve = SubResource("Curve2D_n5hr5")
 speed = 1.5
 
+[node name="Orb6" parent="Objects" instance=ExtResource("6_t8dq8")]
+position = Vector2(4317, -488)
+
+[node name="Orb7" parent="Objects" instance=ExtResource("6_t8dq8")]
+position = Vector2(4357, -541)
+
+[node name="Orb8" parent="Objects" instance=ExtResource("6_t8dq8")]
+position = Vector2(4309, -594)
+
+[node name="Orb9" parent="Objects" instance=ExtResource("6_t8dq8")]
+position = Vector2(4345, -656)
+
 [node name="Danger" type="Node2D" parent="."]
 
 [node name="BearTrap" parent="Danger" instance=ExtResource("8_m5okf")]
@@ -510,7 +522,6 @@ position = Vector2(7, 0)
 shape = SubResource("RectangleShape2D_gruiy")
 
 [node name="Rooms" type="Node2D" parent="."]
-visible = false
 
 [node name="RoomArea" parent="Rooms" node_paths=PackedStringArray("respawn_point") instance=ExtResource("3_g3ev7")]
 position = Vector2(160, 90)
@@ -646,24 +657,19 @@ respawn_point = NodePath("../RespawnPoint18")
 [node name="RespawnPoint18" parent="Rooms" instance=ExtResource("2_c3htd")]
 position = Vector2(3088, -576)
 
-[node name="RoomArea21" parent="Rooms" node_paths=PackedStringArray("respawn_point") instance=ExtResource("3_g3ev7")]
-visible = false
+[node name="RoomArea22" parent="Rooms" node_paths=PackedStringArray("respawn_point") instance=ExtResource("3_g3ev7")]
 position = Vector2(3360, -630)
 respawn_point = NodePath("../RespawnPoint19")
 
 [node name="RespawnPoint19" parent="Rooms" instance=ExtResource("2_c3htd")]
 position = Vector2(3224, -576)
 
-[node name="RoomArea22" parent="Rooms" node_paths=PackedStringArray("respawn_point") instance=ExtResource("3_g3ev7")]
-position = Vector2(3360, -630)
+[node name="RoomArea23" parent="Rooms" node_paths=PackedStringArray("respawn_point") instance=ExtResource("3_g3ev7")]
+position = Vector2(3680, -630)
 respawn_point = NodePath("../RespawnPoint20")
 
 [node name="RespawnPoint20" parent="Rooms" instance=ExtResource("2_c3htd")]
 position = Vector2(3648, -576)
-
-[node name="RoomArea23" parent="Rooms" node_paths=PackedStringArray("respawn_point") instance=ExtResource("3_g3ev7")]
-position = Vector2(3680, -630)
-respawn_point = NodePath("../RespawnPoint20")
 
 [node name="RoomArea24" parent="Rooms" node_paths=PackedStringArray("respawn_point") instance=ExtResource("3_g3ev7")]
 position = Vector2(4320, -450)
@@ -708,15 +714,3 @@ offset_top = -656.0
 offset_right = 5064.0
 offset_bottom = -633.0
 text = "Welcome Home."
-
-[node name="Orb" parent="." instance=ExtResource("6_t8dq8")]
-position = Vector2(4317, -488)
-
-[node name="Orb2" parent="." instance=ExtResource("6_t8dq8")]
-position = Vector2(4357, -541)
-
-[node name="Orb3" parent="." instance=ExtResource("6_t8dq8")]
-position = Vector2(4309, -594)
-
-[node name="Orb4" parent="." instance=ExtResource("6_t8dq8")]
-position = Vector2(4345, -656)
