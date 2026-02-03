@@ -6,6 +6,10 @@ extends Node2D
 @onready var controls_menu: Control = $Canvas/ControlsMenu
 @onready var back: Button = $Canvas/ControlsMenu/Margins/Back
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	AudioManager.play_sound(AudioManager.SOUND_FOREST)
+	TransitionManager.play_transition("fade_enter")
+	AudioManager.play_music(AudioManager.MUS_MENU)
 	main_menu.visible = true
 	controls_menu.visible = false
 	play.connect("button_down", press_play)
@@ -19,7 +23,8 @@ func press_play() -> void:
 	quit.disabled = true
 	TransitionManager.play_transition("fade_exit")
 	await TransitionManager.transition_finished
-	get_tree().change_scene_to_file("res://Scenes/Levels/map.tscn")
+	AudioManager.fade_music()
+	get_tree().change_scene_to_file("res://Scenes/Levels/opening.tscn")
 func press_controls() -> void:
 	main_menu.visible = false
 	controls_menu.visible = true

@@ -5,6 +5,4 @@ extends Node2D
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	TransitionManager.play_transition(transition + "_enter")
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("escape"):
-		get_tree().quit()
+	AudioManager.play_music(AudioManager.MUS_FOREST)

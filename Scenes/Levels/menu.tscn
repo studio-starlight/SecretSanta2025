@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bq7a6mht4yorw"]
+[gd_scene load_steps=5 format=3 uid="uid://bq7a6mht4yorw"]
 
 [ext_resource type="Script" uid="uid://dw6rwiemsayux" path="res://Scripts/Objects/menu.gd" id="1_mvsu8"]
+[ext_resource type="Theme" uid="uid://byeunw3g2imak" path="res://Graphics/Themes/menu.tres" id="2_7pnm7"]
+[ext_resource type="FontFile" uid="uid://wxc5p7n3tlv2" path="res://Graphics/fonts/Ruler 9.ttf" id="2_ju4x4"]
+[ext_resource type="Texture2D" uid="uid://okct2dq0fecd" path="res://Graphics/Sprites/sprite_title.png" id="2_lli10"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_mvsu8")
@@ -8,7 +11,6 @@ script = ExtResource("1_mvsu8")
 [node name="Canvas" type="CanvasLayer" parent="."]
 
 [node name="MainMenu" type="Control" parent="Canvas"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,18 +27,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 32
 
-[node name="Title" type="Label" parent="Canvas/MainMenu/Margins"]
+[node name="Title" type="TextureRect" parent="Canvas/MainMenu/Margins"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "QUARRY"
-horizontal_alignment = 1
+texture = ExtResource("2_lli10")
 
 [node name="Buttons" type="VBoxContainer" parent="Canvas/MainMenu/Margins"]
 layout_mode = 2
@@ -46,23 +45,24 @@ alignment = 1
 
 [node name="Play" type="Button" parent="Canvas/MainMenu/Margins/Buttons"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
+theme = ExtResource("2_7pnm7")
 text = "PLAY"
 flat = true
 
 [node name="Controls" type="Button" parent="Canvas/MainMenu/Margins/Buttons"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
+theme = ExtResource("2_7pnm7")
 text = "CONTROLS"
 flat = true
 
 [node name="Quit" type="Button" parent="Canvas/MainMenu/Margins/Buttons"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
+theme = ExtResource("2_7pnm7")
 text = "QUIT"
 flat = true
 
 [node name="ControlsMenu" type="Control" parent="Canvas"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,7 +86,7 @@ theme_override_constants/margin_bottom = 32
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 8
+theme_override_fonts/font = ExtResource("2_ju4x4")
 text = "A/D to Move Left and Right
 W/Space to Jump
 Hold Left Mouse to Aim
@@ -98,7 +98,17 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 8
+theme = ExtResource("2_7pnm7")
 text = "BACK
 "
 flat = true
+
+[node name="ColorRect" type="ColorRect" parent="Canvas"]
+z_index = -1000
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.1254902, 0.08235294, 0.2, 1)

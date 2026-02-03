@@ -8,6 +8,7 @@ func _ready() -> void:
 	connect("body_exited", _on_orb_exited)
 func _on_orb_entered(body: Node2D) -> void:
 	if body is Player:
+		AudioManager.play_sound(AudioManager.SOUND_ORB)
 		body.air_spin()
 		SignalManager.emit_signal("camera_shake")
 		animator.play("shatter")

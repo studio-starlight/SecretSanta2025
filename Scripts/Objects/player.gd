@@ -14,7 +14,7 @@ enum PlayerState {
 var state : PlayerState
 #================== CONSTANTS =======================
 const LAUNCH_FORCE : float = 3.5
-const JUMP_FORCE : float = 200.0
+const JUMP_FORCE : float = 240
 const MAX_PULL_DISTANCE : float = 60.0
 const MAX_FALL_SPEED : float = 350.0
 const MAX_SPEED : float = 140.0
@@ -56,6 +56,7 @@ func _physics_process(delta: float) -> void:
 				pull()
 				_gravity()
 				if Input.is_action_just_released("leftMouse"):
+					AudioManager.play_sound(AudioManager.SOUND_THROW)
 					SignalManager.emit_signal("camera_shake")
 					circle_sprite.visible = false
 					Engine.time_scale = 1
@@ -68,6 +69,7 @@ func _physics_process(delta: float) -> void:
 					_gravity()
 					launch_particles.emitting = false
 					if is_on_floor() or is_on_wall():
+						AudioManager.play_sound(AudioManager.SOUND_THUD)
 						set_collision_mask_value(8, true)
 						velocity = Vector2.ZERO
 						circle_sprite.visible = true
@@ -95,6 +97,8 @@ func _physics_process(delta: float) -> void:
 				_gravity()
 			if Input.is_action_just_pressed("leftMouse"):
 				spear.visible = true
+				circle_sprite.visible = true
+				AudioManager.play_sound(AudioManager.SOUND_AIM)
 				Engine.time_scale = 0.3
 				set_state(PlayerState.pulling)
 		else:
@@ -103,8 +107,12 @@ func _physics_process(delta: float) -> void:
 			else:
 				set_collision_mask_value(8, false)
 		var was_on_ground = is_on_floor()
+		var was_in_air = not is_on_floor()
 		move_and_slide()
 		var just_left_ground = !is_on_floor() && was_on_ground
+		var just_landed = is_on_floor() && was_in_air
+		if just_landed:
+			AudioManager.play_sound(AudioManager.SOUND_LAND)
 		if just_left_ground && velocity.y >= 0:
 			coyote_jump = true
 			coyote_timer.start()
@@ -118,6 +126,7 @@ func _on_throw_timeout() -> void:
 	throw = false
 func _take_damage(area : Area2D) -> void:
 	if area.owner is not Player:
+		AudioManager.play_sound(AudioManager.SOUND_HURT)
 		call_deferred("die")
 func _take_damage_body(body : Node2D) -> void:
 	print("Damage")
@@ -132,6 +141,15 @@ func _on_spear_entered(area : Area2D) -> void:
 func set_state(new_state: PlayerState) -> void:
 	var previous_state := state
 	state = new_state
+func get_state() -> String:
+	if state in [PlayerState.idle, PlayerState.running, PlayerState.falling, PlayerState.jumping]:
+		return "PlayerState.Free"
+	elif state == PlayerState.pulling:
+		return "PlayerState.Pulling"
+	elif state == PlayerState.throw:
+		return "PlayerState.Throw"
+	else:
+		return "PlayerState.Disable"
 #================== CUSTOM FUNCTIONS =========================
 func set_room(new_room : RoomArea) -> void:
 	room = new_room
@@ -199,8 +217,11 @@ func reflect(other : Vector2) -> void:
 	var velocity_magnitude = velocity.length()
 	var new_velocity = Vector2(cos(velocity_angle), sin(velocity_angle))
 	velocity = new_velocity * velocity_magnitude * REFLECT_MULTIPLYER
+func play_footstep() -> void:
+	AudioManager.play_sound(AudioManager.SOUND_FOOTSTEP)
 func die() -> void:
 	state = PlayerState.disable
+	circle_sprite.visible = true
 	spear.visible = false
 	Engine.time_scale = 1.0
 	SignalManager.emit_signal("camera_shake")
@@ -233,6 +254,7 @@ func _gravity() -> void:
 		velocity.y = MAX_FALL_SPEED	
 func jump() -> void:
 	set_state(PlayerState.jumping)
+	AudioManager.play_sound(AudioManager.SOUND_JUMP)
 	velocity.y = -JUMP_FORCE
 func knockback(knockback_strength : float, knockback_direction : Vector2) -> void:
 	pass

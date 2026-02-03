@@ -1,10 +1,37 @@
 [gd_scene load_steps=8 format=3 uid="uid://diot0uau8ir4h"]
 
 [ext_resource type="Script" uid="uid://bx7o4jwmceh5g" path="res://Scripts/Objects/springy_shroom.gd" id="1_37p6m"]
-[ext_resource type="Texture2D" uid="uid://b2p8ia3i8fb36" path="res://icon.svg" id="2_2eejt"]
+[ext_resource type="Texture2D" uid="uid://bsn22w8gu2ul0" path="res://Graphics/Sprites/sprite_shroom.png" id="2_37p6m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3lg8"]
 size = Vector2(48, 8)
+
+[sub_resource type="Animation" id="Animation_2eejt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DetectionArea/Shape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_37p6m"]
 resource_name = "spring"
@@ -32,34 +59,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.39999998),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.375, 0.0625), Vector2(0.375, 0.25), Vector2(0.375, 0.1875)]
-}
-
-[sub_resource type="Animation" id="Animation_2eejt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DetectionArea/Shape:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.375, 0.1875)]
+"values": [Vector2(1, 0.063), Vector2(1, 1.2), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b3lg8"]
@@ -75,9 +75,8 @@ size = Vector2(48, 16)
 script = ExtResource("1_37p6m")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.375, 0.1875)
-texture = ExtResource("2_2eejt")
-offset = Vector2(0, -64)
+texture = ExtResource("2_37p6m")
+offset = Vector2(0, -8)
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(0, -16)
